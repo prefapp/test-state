@@ -21,7 +21,7 @@ jobs:
       - name: Print payload
         id: branch
         run: |
-           echo ${{ github.event.client_payload.actor }} \
-           echo ${{ github.event.client_payload.image }} \
-           echo ${{ github.event.client_payload.environment }} \
+           echo ${{ github.event.client_payload.actor }} 
+           echo ${{ github.event.client_payload.image }} 
+           echo ${{ github.event.client_payload.environment }} 
            echo ${{ github.event.client_payload.service }} 
