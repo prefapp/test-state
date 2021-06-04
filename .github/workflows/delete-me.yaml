@@ -1,0 +1,27 @@
+name: Test release
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  stage: 'STAGE_ENVAR'
+  service_name: 'SERVICE_NAME_ENVAR'
+  state_repo: 'test-state'
+  
+jobs:
+  show-actor:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Print Github actor
+        run: |
+          echo $GITHUB_ACTOR
+          echo ${{ github.actor }}
+          
+      - name: Dispatch release to state repo
+        run: echo ${{ secrets.GITHUB_TOKEN }}" 
+   
