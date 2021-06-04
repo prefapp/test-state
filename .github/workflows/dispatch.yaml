@@ -1,0 +1,27 @@
+name: Dispatch workflow
+
+on:
+  repository_dispatch:
+    types: test-dispatch-event
+
+env:
+  image_file: ''
+  base_branch: ''
+  repo_name: ''
+  project_name: ''
+  repo_git_user: ''
+  repo_git_mail: ''
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Print payload
+        id: branch
+        run: |
+           echo ${{ github.event.client_payload.actor }} \
+           echo ${{ github.event.client_payload.image }} \
+           echo ${{ github.event.client_payload.environment }} \
+           echo ${{ github.event.client_payload.service }} 
