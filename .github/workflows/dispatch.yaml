@@ -6,11 +6,12 @@ on:
 
 env:
   image_file: ''
-  base_branch: ''
-  repo_name: ''
-  project_name: ''
-  repo_git_user: ''
-  repo_git_mail: ''
+  base_branch: 'main'
+  repo_name: 'test-state'
+  project_name: 'prefapp'
+  repo_git_user: 'github-actions'
+  repo_git_mail: 'github-actions@github.com'
+
 
 jobs:
   build:
@@ -25,3 +26,26 @@ jobs:
            echo ${{ github.event.client_payload.image }} 
            echo ${{ github.event.client_payload.environment }} 
            echo ${{ github.event.client_payload.service }} 
+           
+      - name: Create branch with changes
+        run: |
+          git config --global user.name ${{ env.repo_git_user }}
+          git config --global user.email ${{ env.repo_git_mail }}
+          git checkout -b newbranch
+          touch test.txt
+          git add .
+          git commit -m "commit msg"
+          git push origin newbranch
+      - name: Create Pull Request
+        run: |
+          git config --global user.name ${{ env.repo_git_user }}
+          git config --global user.email ${{ env.repo_git_mail }}
+          ls -l
+          echo ${GITHUB_TOKEN}
+          docker run -v $(pwd):/repo prefapp/prefapp-cicdpy:cd github.pr_crear \
+             token=${GITHUB_TOKEN} \
+             titulo="tituloPR" \
+             rama_origen=newbranch \
+             repo=${{ env.repo_name }} \
+             proyecto=${{ env.project_name }} \
+             reviewers='${{ github.event.client_payload.actor }}'
