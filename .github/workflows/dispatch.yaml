@@ -46,6 +46,7 @@ jobs:
              token=${{ secrets.GITHUB_TOKEN }} \
              titulo="tituloPR" \
              rama_origen=newbranch \
+             rama_destino=${{ env.base_branch }} \
              repo=${{ env.repo_name }} \
              proyecto=${{ env.project_name }} \
              reviewers='${{ github.event.client_payload.actor }}'
