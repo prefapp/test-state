@@ -43,7 +43,7 @@ jobs:
           ls -l
           echo ${GITHUB_TOKEN}
           docker run -v $(pwd):/repo prefapp/prefapp-cicdpy:cd github.pr_crear \
-             token=${GITHUB_TOKEN} \
+             token=${{ secrets.GITHUB_TOKEN }} \
              titulo="tituloPR" \
              rama_origen=newbranch \
              repo=${{ env.repo_name }} \
