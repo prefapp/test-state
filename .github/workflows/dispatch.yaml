@@ -42,7 +42,7 @@ jobs:
           git config --global user.email ${{ env.repo_git_mail }}
           ls -l
           echo ${GITHUB_TOKEN}
-          docker run -v $(pwd):/repo prefapp/prefapp-cicdpy:cd github.pr_crear \
+          docker run -v $(pwd):/repo prefapp/prefapp-cicdpy:cd github.pr_auto_merge \
              token=${{ secrets.GITHUB_TOKEN }} \
              titulo="tituloPR" \
              rama_origen=newbranch \
