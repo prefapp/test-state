@@ -33,7 +33,7 @@ jobs:
           git config --global user.email ${{ env.repo_git_mail }}
           git checkout -b newbranch
           touch test.txt
-          git add .
+          git add test.txt
           git commit -m "commit msg"
           git push origin newbranch
       - name: Create Pull Request
