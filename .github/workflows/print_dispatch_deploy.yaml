@@ -1,0 +1,14 @@
+name: Dispatch workflow
+
+on:
+  repository_dispatch:
+    types: dispatch-imagen-test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        
+      - name: Print all
+        run: |
+          echo ${{ github.event.client_payload }}
