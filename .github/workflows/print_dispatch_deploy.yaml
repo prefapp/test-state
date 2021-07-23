@@ -12,3 +12,5 @@ jobs:
       - name: Print all
         run: |
           echo ${{ toJSON(github.event.client_payload) }}
+          echo ${{ github.event.client_payload.reviewers }}
+          echo ${{ github.event.client_payload.service_names }}
