@@ -13,4 +13,6 @@ jobs:
         run: |
           echo ${{ toJSON(github.event.client_payload) }}
           echo ${{ github.event.client_payload.reviewers }}
-          echo ${{ github.event.client_payload.service_names }}
+          echo ${{ github.event.client_payload.tenant }}
+          echo ${{ github.event.client_payload.app }}
+          echo ${{ toJSON(github.event.client_payload.service_names) }}
