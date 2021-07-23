@@ -11,4 +11,4 @@ jobs:
         
       - name: Print all
         run: |
-          echo ${{ github.event.client_payload }}
+          echo ${{ fromJSON(github.event.client_payload) }}
