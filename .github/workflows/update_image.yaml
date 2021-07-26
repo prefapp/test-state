@@ -1,4 +1,4 @@
-name: Dispatch workflow
+name: Update image
 
 on:
   repository_dispatch:
