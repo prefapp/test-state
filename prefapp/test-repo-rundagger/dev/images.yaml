@@ -1,2 +1,2 @@
 controller:
-  image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full
+  image: prefappacr.azurecr.io/service/test-repo-rundagger:9c01ac2_default
