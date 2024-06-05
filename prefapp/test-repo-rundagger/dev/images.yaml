@@ -1,0 +1,2 @@
+controller:
+  image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full

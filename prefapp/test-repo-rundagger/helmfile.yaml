@@ -1,0 +1,17 @@
+environments:
+  dev:
+    values:
+    - {{ .Environment.Name }}.yaml
+  pre:
+    values:
+    - {{ .Environment.Name }}.yaml
+
+
+releases:
+  - name: test-repo-run-dagger
+    namespace: {{ .Environment.Name }}
+    chart: testchart
+    version: {{ .Values.version }}
+    values:
+      - {{ .Environment.Name }}/values.yaml
+      - {{ .Environment.Name }}/images.yaml

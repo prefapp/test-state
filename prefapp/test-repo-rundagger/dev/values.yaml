@@ -1,0 +1,40 @@
+role:
+  create: "true"
+
+operator:
+  disableSSL: "true"
+  debug: "true"
+  commandStart:
+    - ./run.sh
+    - operator
+    - --start=controller
+    # To run on import mode
+    # - --importModeSkipPlan
+
+deployment:
+  annotations:
+    reloader.stakater.com/auto: "true"
+    
+filesConfigMap: []
+
+envConfigMap:
+  OPERATOR_KIND_LIST: "githubgroups,githubmemberships,githubrepositories,githubrepositoryfeatures,terraformworkspaces,terraformworkspaceplans"
+  OPERATOR_NAMESPACE: dev
+  CDKTF_CONFIG_FILES: /etc/config/.cdktf
+  EXCLUSIONS_PATH: /etc/config/.cdktf/exclusions.yaml
+  S3_BUCKET: prefapp-backstage-dev
+  S3_LOCK: prefapp-backstage-dev
+  S3_REGION: eu-west-1
+  GITHUB_APP_ID: "301667"
+  GITHUB_APP_INSTALLATION_ID: "34936235"
+  GITHUB_APP_INSTALLATION_ID_PREFAPP: "34944711"
+  ORG: firestarter-test
+  DEBUG: "firestarter:*"
+  
+parameterStore:
+  roleArn: arn:aws:iam::041728615317:role/iam_role_parameter_store_all
+  secrets:
+    AWS_ACCESS_KEY_ID: /firestarter-firestarter-test-stack/keys/access
+    AWS_SECRET_ACCESS_KEY: /firestarter-firestarter-test-stack/keys/secret
+    TOKEN: /firestarter/dev/token
+    GITHUB_APP_PEM_FILE: /firestarter/dev/pem_file

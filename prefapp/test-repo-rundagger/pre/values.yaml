@@ -1,0 +1,33 @@
+role:
+  create: "true"
+
+operator:
+  disableSSL: "true"
+  debug: "true"
+  commandStart:
+    - ./run.sh
+    - operator
+    - --start=controller
+    # To run on import mode
+    # - --importModeSkipPlan
+
+deployment:
+  annotations:
+    reloader.stakater.com/auto: "true"
+
+filesConfigMap: []
+
+envConfigMap:
+  OPERATOR_KIND_LIST: "githubgroups,githubmemberships,githubrepositories,githubrepositoryfeatures"
+  OPERATOR_NAMESPACE: pre
+  DEBUG: "*"
+  GITHUB_APP_ID: "209759"
+  GITHUB_APP_INSTALLATION_ID: "26424236"
+  GITHUB_APP_INSTALLATION_ID_PREFAPP: "26424236"
+  ORG: prefapp
+
+parameterStore:
+  roleArn: arn:aws:iam::041728615317:role/iam_role_parameter_store_all
+  secrets:
+    PROOF: /proof/proof
+    GITHUB_APP_PEM_FILE: /firestarter/pre/pem_file
