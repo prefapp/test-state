@@ -1,52 +1,25 @@
-name: Dispatch workflow
+name: Update images workflow
+
+concurrency: automatic_pull_requests
 
 on:
   repository_dispatch:
-    types: test-dispatch-event
-
-env:
-  image_file: ''
-  base_branch: 'main'
-  repo_name: 'test-state'
-  project_name: 'prefapp'
-  repo_git_user: 'github-actions'
-  repo_git_mail: 'github-actions@github.com'
-
+    types: dispatch-image
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
 
-      - name: Print payload
-        id: branch
-        run: |
-           echo ${{ github.event.client_payload.actor }} 
-           echo ${{ github.event.client_payload.image }} 
-           echo ${{ github.event.client_payload.environment }} 
-           echo ${{ github.event.client_payload.service }} 
-           
-      - name: Create branch with changes
-        run: |
-          git config --global user.name ${{ env.repo_git_user }}
-          git config --global user.email ${{ env.repo_git_mail }}
-          git checkout -b newbranch
-          touch test.txt
-          git add test.txt
-          git commit -m "commit msg"
-          git push origin newbranch
-      - name: Create Pull Request
-        run: |
-          git config --global user.name ${{ env.repo_git_user }}
-          git config --global user.email ${{ env.repo_git_mail }}
-          ls -l
-          echo ${GITHUB_TOKEN}
-          docker run -v $(pwd):/repo elberto/prefapp-cicd:test github.pr_crear \
-             token=${{ secrets.GITHUB_TOKEN }} \
-             titulo="tituloPR" \
-             rama_origen=newbranch \
-             rama_destino=${{ env.base_branch }} \
-             repo=${{ env.repo_name }} \
-             proyecto=${{ env.project_name }} \
-             reviewers='${{ github.event.client_payload.actor }}'
+      - uses: actions/checkout@v4
+
+      - name: Update image
+        uses: prefapp/action-state-repo-update-image@feature/v3
+        with:
+          tenant: ${{ github.event.client_payload.tenant }}
+          application: ${{ github.event.client_payload.app }}
+          environment: ${{ github.event.client_payload.env }}
+          service_names: ${{ toJSON(github.event.client_payload.service_names) }}
+          image: ${{ github.event.client_payload.image }}
+          reviewers: ${{ toJSON(github.event.client_payload.reviewers) }}
+          token: ${{ secrets.PAT_DEPLOY }}
