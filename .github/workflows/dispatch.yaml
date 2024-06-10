@@ -15,6 +15,6 @@ jobs:
 
       - name: Update image
         id: gh
-        uses: prefapp/action-state-repo-update-image@feat/add-base-folder-support
+        uses: prefapp/action-state-repo-update-image@v4
         with:
           input_matrix: ${{ toJSON(github.event.client_payload) }}
