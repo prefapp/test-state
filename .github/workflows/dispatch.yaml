@@ -15,6 +15,6 @@ jobs:
 
       - name: Update image
         id: gh
-        uses: prefapp/action-state-repo-update-image@v4
+        uses: prefapp/action-state-repo-update-image@fix/error-handling
         with:
           input_matrix: ${{ toJSON(github.event.client_payload) }}
