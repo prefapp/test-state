@@ -14,12 +14,7 @@ jobs:
           echo ${{ toJSON(github.event.client_payload) }}
       - uses: actions/checkout@v2  #NECESSARY
       
-      - name: Update image  
-        uses: prefapp/action-state-repo-update-image@feature/v3
+      - name: Update image
+        uses: prefapp/action-state-repo-update-image@fix/error-handling
         with:
-          tenant: ${{ github.event.client_payload.tenant }}
-          application: ${{ github.event.client_payload.app }}
-          environment: ${{ github.event.client_payload.env }}
-          service_names: ${{ toJSON(github.event.client_payload.service_names) }}
-          image: ${{ github.event.client_payload.image }}
-          reviewers: '[]'
+          input_matrix: ${{ toJSON(github.event.client_payload) }}
