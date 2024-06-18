@@ -1,3 +1,6 @@
 controller:
   image: >-
     041728615317.dkr.ecr.eu-west-1.amazonaws.com/service/prefapp/test-repo-rundagger:test-release-v.0.0.7_full
+test-service:
+  image: >-
+    041728615317.dkr.ecr.eu-west-1.amazonaws.com/service/prefapp/test-repo-rundagger:test-release-v.0.0.7_full
