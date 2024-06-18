@@ -1,4 +1,4 @@
 controller:
-  image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full
+  image: prefappacr.azurecr.io:test-repo-rundagger-v0.2.24_default
 test-service:
   image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full
