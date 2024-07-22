@@ -3,4 +3,4 @@ controller:
     prefappacr.azurecr.io/service/prefapp/test-repo-rundagger:test-tag-toni-9_default
 test-service:
   image: >-
-    prefappacr.azurecr.io/service/prefapp/test-repo-rundagger:test-tag-toni-9_default
+    prefappacr.azurecr.io/service/prefapp/test-repo-rundagger:test-tag-toni-12_default
