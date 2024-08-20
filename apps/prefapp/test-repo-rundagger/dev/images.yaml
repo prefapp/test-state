@@ -3,4 +3,5 @@ controller:
 test-service:
   image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full
 test-glob:
-  image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full
+  image: >-
+    prefappacr.azurecr.io/service/prefapp/test-repo-rundagger:cd278ba_other-flavor-dev
