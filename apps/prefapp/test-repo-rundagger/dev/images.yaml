@@ -2,3 +2,5 @@ controller:
   image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full
 test-service:
   image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full
+test-glob:
+  image: ghcr.io/prefapp/gitops-k8s:6c1da5e_full
