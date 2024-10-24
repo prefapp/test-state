@@ -2,7 +2,7 @@ name: Update image
 
 on:
   repository_dispatch:
-    types: dispatch-imagen-test
+    types: test-dispatch-imagen
 
 jobs:
   build:
