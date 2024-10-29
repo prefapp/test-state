@@ -7,13 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-        
-      - name: Print all
-        run: |
-          echo ${{ toJSON(github.event.client_payload) }}
-      - uses: actions/checkout@v2  #NECESSARY
-      
+    steps:      
       - name: Update image
         uses: prefapp/action-state-repo-update-image@fix/single-pr-for-multiple-tenant-app-env-changes
         with:
