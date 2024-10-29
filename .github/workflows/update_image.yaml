@@ -7,8 +7,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:      
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Update image
         uses: prefapp/action-state-repo-update-image@fix/single-pr-for-multiple-tenant-app-env-changes
         with:
           input_matrix: ${{ toJSON(github.event.client_payload) }}
+          token: ${{ secrets.REPO_STATE_PR_TOKEN }}
