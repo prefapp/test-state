@@ -2,7 +2,7 @@ name: Update image
 
 on:
   repository_dispatch:
-    types: test-dispatch-imagen
+    types: [test-dispatch-image]
 
 jobs:
   build:
@@ -15,6 +15,6 @@ jobs:
       - uses: actions/checkout@v2  #NECESSARY
       
       - name: Update image
-        uses: prefapp/action-state-repo-update-image@v4
+        uses: prefapp/action-state-repo-update-image@fix/single-pr-for-multiple-tenant-app-env-changes
         with:
           input_matrix: ${{ toJSON(github.event.client_payload) }}
